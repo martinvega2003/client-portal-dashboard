@@ -1,132 +1,117 @@
-# pern-auth-with-zod-and-typescript
-PERN (Postgres + Express + React + Node) Authentication App in TypeScript with input validation via Zod — minimal, secure starter template for demos and interviews.
+_This project was bootstrapped using a personal PERN + TypeScript auth boilerplate, then extended into a Freelance/Client Dashboard with project management and invoicing features._
 
-# PERN Auth — Authentication Starter (TypeScript + Zod)
+# 🖥️ Freelance / Client Dashboard
 
-PERN Auth is a minimal authentication starter demonstrating a complete auth flow using PostgreSQL, Express, React and TypeScript. It uses **Zod** for request validation and **JWT** for authentication. This repository is intended as a concise template for demos, interviews and small prototypes.
-
----
-
-## 🚀 One-line
-Full-stack authentication demo: registration, login (JWT), protected routes, input validation (Zod), password hashing and seed scripts — built with the PERN stack (Postgres, Express, React, Node) and TypeScript.
+A fullstack **business dashboard and client portal** for freelancers or small agencies.  
+This project allows agencies to manage clients, projects, and invoices, while providing clients a secure portal to view projects and invoices. Built with **React, TypeScript, TailwindCSS, Express, PostgreSQL, and Zod**, the app demonstrates polished UI/UX and solid backend logic.
 
 ---
 
-## ✅ Key features
-- User registration with secure password hashing (bcrypt)
-- Login endpoint issuing a signed JWT and returning a user object
-- Authentication middleware for protected endpoints
-- Strong request validation using Zod
-- Database seed script to create demo data
-- Example frontend login + protected request flow
-- Suggested tests (Jest + Supertest for backend, React Testing Library for frontend)
-- Docker-compose example for local Postgres (optional)
-- Clear .env.example and quickstart instructions
+## 🚀 Features
+
+### For Freelancers / Agencies
+- **Authentication & Profile**: Register, login, logout, update profile.  
+- **Clients Management**: Add, view, edit, delete clients.  
+- **Projects Management**: Create and manage projects, track status, attach deliverables.  
+- **Invoices**: Generate invoices, mark as paid, track pending/overdue payments.  
+- **Dashboard & Analytics**: View metrics like total clients, active projects, revenue charts.  
+- **Optional Enhancements**: Messaging, file uploads, notifications.  
+
+### For Clients
+- **Secure Login**: Only via credentials provided by freelancer/agency.  
+- **Projects Overview**: Read-only view of assigned projects, deadlines, and milestones.  
+- **Invoices**: View invoice amounts, status, and download PDFs.  
+- **Optional Enhancements**: Mark invoices as paid, messages from agency.  
 
 ---
 
-## 🧰 Technologies & libraries (used / recommended)
+## 🎨 Screenshots / UI Preview
 
-### Backend (Node / Express / TypeScript)
-- **Node.js**
-- **Express**
-- **TypeScript**
-- **ts-node** / **ts-node/esm** (development runner)
-- **dotenv** (environment variables)
-- **cors**
-- **pg** (Postgres client)
-- **jsonwebtoken** (JWT creation / verification)
-- **bcryptjs** (password hashing)
-- **zod** (schema validation)
-- **nodemon** or **ts-node-dev** (optional, dev auto-reload)
+*Screenshots and GIFs will be added as the dashboard is developed.*
 
-### Frontend (React / TypeScript)
-- **React**
-- **React DOM**
-- **TypeScript** (for React TSX)
-- **Tailwind CSS** (optional, for styling)
-- **react-router-dom** (routing)
-- **fetch** or **axios** (HTTP client; fetch is native)
-
-### Testing
-- **Jest** (unit / integration)
-- **ts-jest** (TypeScript + Jest bridge)
-- **Supertest** (HTTP assertions for Express)
-- **@testing-library/react** (frontend testing)
-- **@testing-library/jest-dom**
-
-### Dev / Tooling / Ops
-- **ESLint** / **Prettier** (linting & formatting — recommended)
-- **Docker** & **docker-compose** (optional: Postgres local bootstrap)
-- **Git** (version control)
-- **VS Code** (recommended editor)
-- **Optional**: migration tools (e.g. **knex**, **TypeORM**, **Prisma**) — not included by default but recommended for production
+![Dashboard Overview](path-to-screenshot.png)  
+![Client Projects](path-to-screenshot.png)  
+![Invoices](path-to-screenshot.png)  
 
 ---
 
-## ⚙️ Quickstart (local)
+## 🛠️ Tech Stack
 
-1. Create DB:
+- **Frontend**: React + TypeScript + TailwindCSS  
+- **Backend**: Express + Node.js + TypeScript + Zod (validation)  
+- **Database**: PostgreSQL  
+- **Authentication**: JWT + bcrypt  
+- **State Management**: React Context / Hooks  
+- **Optional**: Chart.js / Recharts for analytics  
+
+---
+
+## 🔧 Setup & Run Locally
+
+1. **Clone the repo**  
 ```bash
-createdb pern_auth_dev
-````
+git clone https://github.com/martinvega2003/client-portal-dashboard
+```
 
-2. Backend:
+2.	**Backend setup**
 
 ```bash
 cd server
-cp .env.example .env     # edit values
 npm install
-npm run dev               # start server (ts-node / ts-node-dev)
+# create .env file with DB connection, JWT secret, etc.
+npm run build
+npm run start
 ```
 
-3. Frontend:
+3.	**Frontend setup**
 
 ```bash
 cd client
 npm install
-npm start
+npm run dev
 ```
 
----
+4.	Open http://localhost:5173 to view the dashboard.
 
-## 📦 Main endpoints (example)
+⸻
 
-* `POST /api/auth/register` — register a new user
-* `POST /api/auth/login` — authenticate and receive `{ token, user }`
-* `GET /api/profile` — protected route (requires `Authorization: Bearer <token>`)
+## 🗂️ Endpoints Overview
 
----
+	•	Auth: /api/auth/register, /api/auth/login, /api/auth/logout
+	•	Clients: /api/clients (CRUD, protected by agency auth)
+	•	Projects: /api/projects (CRUD, protected by agency auth)
+	•	Invoices: /api/invoices (CRUD, protected by agency auth)
+	•	Dashboard / Analytics: /api/dashboard/stats (protected)
+	•	Client Portal: /api/client/projects, /api/client/invoices (read-only, protected)
 
-## 🔒 Security notes (short)
+⸻
 
-* Do **not** commit `.env` or secrets. Use `.env.example`.
-* Prefer `HttpOnly` + `Secure` cookies for refresh tokens in production.
-* Use short-lived access tokens + refresh token rotation / revocation.
-* Rate-limit authentication endpoints (e.g. `express-rate-limit`).
+## 📝 Commit Guidelines
 
----
+  ```
+  • feat(Clients): add client list page
+  • fix(Auth): correct password validation
+  • chore(Config): update tailwind config
+  • docs(README): add setup instructions
+  • style(Navbar): fix button alignment
+  • refactor(Projects): simplify reducer
+  • test(Auth): add login endpoint unit tests
+  ```
 
-## Contributing
+⸻
 
-Contributions, bug reports and feature requests are welcome — thank you!  
-Please follow these simple guidelines:
+## ✅ Roadmap / Future Enhancements
 
-- Open an issue first for larger changes or feature proposals to discuss the approach.  
-- For small fixes or docs improvements, submit a pull request with a clear and focused change.  
-- Use concise commits following the commit types: `feat`, `fix`, `docs`, `test`, `chore`.  
-- Run or add tests when appropriate and update documentation for user-facing changes.  
-- If you discover a security issue, do **not** open a public issue; contact the repo owner directly for a private disclosure.
+	•	Add notifications for clients and agency.
+	•	File uploads for deliverables or contracts.
+	•	Online payment integration (Stripe / PayPal).
+	•	Kanban view for projects.
+	•	Multi-agency support (team members, roles).
 
-Contact for private security reports: `josemartinvt2003@gmail.com`
-
----
+⸻
 
 ## 📄 License
 
-MIT
+MIT License — feel free to reuse and adapt for portfolio purposes.
 
----
 
-```
-```
