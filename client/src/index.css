@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@keyframes gradient-x {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Apply transitions only during theme switch */
+html.theme-transition * {
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s !important;
+}
+
+/* Prevent child duplication */
+html.theme-transition .no-color-transition * {
+  transition-duration: 0s !important;
+}
+
+body {
+  @apply bg-zinc-200 dark:bg-gray-800;
+  margin-top: 80px; /* Value based on the navbar height */
+}
+
+.btn-gradient-anim {
+  background-size: 200% 200%;
+  animation: gradient-x 4s linear infinite;
+}
