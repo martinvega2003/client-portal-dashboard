@@ -49,12 +49,16 @@ export const login = async (req: Request, res: Response) => {
     if (!ok) return res.status(401).json({ error: 'Invalid credentials' });
 
     const token = signJwt({ sub: String(userDb.id), email: userDb.email });
-
+    
     const publicUser: PublicUser = {
       id: userDb.id,
       username: userDb.username,
       email: userDb.email,
-      created_at: userDb.created_at
+      role: userDb.role,   // include role
+      profile_picture: userDb.profile_picture,
+      bio: userDb.bio,
+      website: userDb.website,
+      created_at: userDb.created_at,
     };
 
     return res.json({ token, user: publicUser });

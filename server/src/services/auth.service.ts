@@ -4,7 +4,9 @@ import type { DbUser, PublicUser } from '../types.js';
 // Return user with password_hash (for authentication)
 export const getUserByEmail = async (email: string): Promise<DbUser | null> => {
   const result = await pool.query<DbUser>( // <DbUser> defines the type of rows returned (result.rows = DbUser[])
-    'SELECT id, username, email, password_hash, created_at FROM users WHERE email = $1',
+    `SELECT id, username, email, password_hash, role, profile_picture, bio, website, created_at
+     FROM users
+     WHERE email = $1`,
     [email]
   );
   return result.rows[0] ?? null;
@@ -17,20 +19,26 @@ export const createUser = async (
   passwordHash: string
 ): Promise<PublicUser> => {
   try {
-    const result = await pool.query<Pick<DbUser, 'id' | 'username' | 'email' | 'created_at'>>( // only select the fields that will be returned
-      'INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING id, username, email, created_at',
+    const result = await pool.query<Pick<DbUser, 'id' | 'username' | 'email' | 'role' | 'profile_picture' | 'bio' | 'website' | 'created_at'>>( // only select the fields that will be returned
+      `INSERT INTO users (username, email, password_hash)
+       VALUES ($1, $2, $3)
+       RETURNING id, username, email, role, profile_picture, bio, website, created_at`,
       [username, email, passwordHash]
     );
 
     const row = result.rows[0];
     if (!row) throw new Error('Failed to create user');
 
-     // map to return type without password_hash
+    // map to return type without password_hash
     const publicUser: PublicUser = {
       id: row.id,
       username: row.username,
       email: row.email,
-      created_at: row.created_at
+      role: row.role,
+      profile_picture: row.profile_picture,
+      bio: row.bio,
+      website: row.website,
+      created_at: row.created_at,
     };
     return publicUser;
   } catch (err: any) {
