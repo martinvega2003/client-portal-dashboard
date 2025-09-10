@@ -16,8 +16,10 @@ const Sidebar: React.FC = () => {
   };
 
   const links: SidebarLinkProps[] = [
-    { to: "/home", label: "Home" },
     { to: "/dashboard", label: "Dashboard" },
+    { to: "/clients", label: "Clients" },
+    { to: "/projects", label: "Projects" },
+    { to: "/invoices", label: "invoices" },
     { to: "/profile", label: "Profile" },
     { to: "/settings", label: "Settings" },
   ];
