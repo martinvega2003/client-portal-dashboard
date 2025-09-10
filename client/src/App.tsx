@@ -13,7 +13,7 @@ import Sidebar from './components/Sidebar';
 import InitialPage from './pages/InitialPage'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
-import Auth from './pages/Auth';
+import Dashboard from './pages/Dashboard';
 
 // Routes
 import ProtectedRoute from './components/ProtectedRoute';
@@ -60,10 +60,10 @@ function App() {
 
             {/* Protected Routes */ }
             <Route
-              path="/auth"
+              path="/dashboard"
               element={
                 <ProtectedRoute>
-                  <Auth />
+                  <Dashboard />
                 </ProtectedRoute>
               }
             />

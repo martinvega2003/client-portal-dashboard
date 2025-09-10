@@ -65,7 +65,7 @@ const LoginPage: React.FC = () => {
       login(token, user); // Update context and localStorage
 
       notifySuccess("Successfully logged in");
-      navigate('/auth');
+      navigate('/dashboard');
     } catch (error) {
       if (axios.isAxiosError(error)) {
         // if backend sent a response (e.g., 400 or 401)

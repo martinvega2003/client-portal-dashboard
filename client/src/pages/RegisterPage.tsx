@@ -72,7 +72,7 @@ const RegisterPage: React.FC = () => {
       login(token, user); // Update context and localStorage
 
       notifySuccess("Registration successful!");
-      navigate('/auth');
+      navigate('/dashboard');
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {

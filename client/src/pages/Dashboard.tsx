@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext";
 
-const Auth: React.FC = () => {
+const Dashboard: React.FC = () => {
 
   // Get user from AuthContext
   const { user } = useAuth()!;
@@ -20,4 +20,4 @@ const Auth: React.FC = () => {
   )
 };
 
-export default Auth;
+export default Dashboard
