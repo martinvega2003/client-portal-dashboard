@@ -1,5 +1,6 @@
 import express from 'express';
 import authRoutes from './routes/auth.route.js';
+import userRoutes from './routes/user.route.js';
 import cors from 'cors';
 
 const app = express();
@@ -12,7 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: process.env.FRONTEND_URL as string, credentials: true }));
 
 // mount API routes
-app.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes); // auth routes
+app.use('/api/users', userRoutes); // user routes
 
 // basic health endpoint
 app.get('/health', (_req, res) => {
